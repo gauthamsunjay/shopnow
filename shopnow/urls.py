@@ -23,6 +23,7 @@ from .views import home
 urlpatterns = [
     # url(r'/$', home, name="home"),
     url(r'^$', ProductListView.as_view(), name='home'),
+    url(r'^cart/', include("cart.urls")),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include("products.urls")),
     url(r'^search$', ProductsSearchView.as_view(), name="search"),

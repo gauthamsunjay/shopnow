@@ -1,4 +1,3 @@
-<script type="text/template" id="carts_view">
 <div class="modal fade" id="cart" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
@@ -9,19 +8,7 @@
         </div>
         <div class="modal-body">
           <table class="table-hover">
-            <tbody>
-              {% for(var i = 0; i < products.length; i++) { %}
-                  <tr>
-                    <td class="product-image">
-                      <img src="images/bike_1.jpg" />
-                    </td>
-                    <td class="product-name">
-                      <span>{%- products[i].name %}</span>
-                    </td>
-                    <td class="product-price">
-                      <span>Rs.{%- products[i].price %}</span>
-                    </td>
-                  </tr>
+            <tbody id="cartProducts">
             </tbody>
           </table>
           <table class="carts-total">
@@ -29,7 +16,7 @@
               <tr>
                 <td style="text-align: right;width: 477px;padding-right: 20px;font-size: 22px;font-weight: 500;">Total</td>
                 <td>
-                  <span class="products-total">Rs. {%- total %}</span>
+                  <span class="products-total" id="cartProductsTotal"></span>
                 </td>
               </tr>
             </tbody>
@@ -41,4 +28,3 @@
       </div>
     </div>
 </div>
-</script>

@@ -18,13 +18,13 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         </div>
         {% for product in obj.products %}
-            <div class="product">
+            <div class="product" data-product-id={{product.id}}>
               <div class="product-image">
                 <img src="/static/images/{{product.image}}" />
               </div>
               <div class="product-details">
                 <span class="product-name">{{product.name}}</span>
-                <span class="product-description">Only {{product.num_left}} stocks are left.</span>
+                <span class="product-description">Only {{product.num_left}} left in stock.</span>
                 <span class="product-price">Rs. {{product.price}}</span>
               </div>
               <div class="product-action">

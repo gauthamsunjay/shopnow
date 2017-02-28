@@ -1,12 +1,15 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product
+from django.views import View
+from cart.models import Cart
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
-def get_products(query):
+def get_products(query=None):
   products = {}
   objects = Product.objects.all()
   if query:
@@ -16,6 +19,7 @@ def get_products(query):
     try:
       products[obj.category].append(
         {
+          "id": obj.pk,
           "name": obj.name,
           "price": obj.price,
           "num_left": obj.num_left,
@@ -25,6 +29,7 @@ def get_products(query):
 
     except KeyError:
       products[obj.category] = [{
+        "id": obj.pk,
         "name": obj.name,
         "price": obj.price,
         "num_left": obj.num_left,
@@ -40,15 +45,7 @@ class ProductListView(LoginRequiredMixin, ListView):
   products = []
 
   def get_queryset(self):
-    return [{
-      'category': 'Cycles',
-      'products': [{
-        'name': 'Cycle-1',
-        'price': '800',
-        'num_left': 4,
-        'image': 'product_1.jpg'
-      }]
-    }]
+    return get_products()
 
 
 class ProductsSearchView(ListView):
@@ -58,7 +55,7 @@ class ProductsSearchView(ListView):
 
   def get_queryset(self):
     query = self.request.GET.get("q", None)
-    return get_products(query)
+    return get_products(query=query)
 
 
 class ProductDetailView(DetailView):
@@ -69,3 +66,30 @@ class ProductDetailView(DetailView):
   def get_queryset(self, *args, **kwargs):
     pk = kwargs.get("pk", 1)
     return Product.objects.filter(id=pk)
+
+
+class ProductCartView(LoginRequiredMixin, View):
+  def post(self, request, *args, **kwargs):
+    pk = kwargs.get("pk")
+    product = Product.objects.get(pk=pk)
+    try:
+      cart = Cart.objects.get(user=request.user)
+      cart.products.add(product)
+      cart.save()
+
+    except Cart.DoesNotExist:
+      cart = Cart(user=request.user)
+      cart.save()
+      cart.products.add(product)
+      cart.save()
+
+    return JsonResponse({"success": True}, safe=False)
+
+  def delete(self, request, *args, **kwargs):
+    pk = kwargs.get("pk")
+    product = Product.objects.get(pk=pk)
+    cart = Cart.objects.get(user=request.user)
+    cart.products.remove(product)
+    cart.save()
+
+    return JsonResponse({"success": True}, safe=False)

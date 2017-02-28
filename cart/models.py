@@ -8,5 +8,5 @@ from products.models import Product
 
 
 class Cart(models.Model):
-  username = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   products = models.ManyToManyField(Product)
