@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/app.css' %}"/>
     <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/underscore.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/scroll.js' %}"></script>
 </head>
 <body>
@@ -18,5 +19,8 @@
         {% block content %}
         {% endblock %}
     </div>
+
+    <script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+
 </body>
 </html>

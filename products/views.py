@@ -20,14 +20,6 @@ class ProductListView(LoginRequiredMixin, ListView):
         'num_left': 4,
         'image': 'product_1.jpg'
       }]
-    }, {
-      'category': 'Ford Cycles',
-      'products': [{
-        'name': 'Cycle-2',
-        'price': '2000',
-        'num_left': 2,
-        'image': 'product_2.jpeg'
-      }]
     }]
 
 class ProductDetailView(DetailView):
