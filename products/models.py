@@ -6,6 +6,8 @@ from django.db import models
 
 
 class Product(models.Model):
+  category = models.CharField(max_length=200)
   name = models.CharField(max_length=200)
   price = models.IntegerField()
   num_left = models.IntegerField()
+  image = models.CharField(max_length=200)

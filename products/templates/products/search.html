@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% for obj in object_list %}
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="product-category">{{obj.category}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="products">
+        <div class="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </div>
+        <div class="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </div>
+        {% for product in obj.products %}
+            <div class="product">
+              <div class="product-image">
+                <img src="/static/images/{{product.image}}" />
+              </div>
+              <div class="product-details">
+                <span class="product-name">{{product.name}}</span>
+                <span class="product-description">Only {{product.num_left}} stocks are left.</span>
+                <span class="product-price">Rs. {{product.price}}</span>
+              </div>
+              {% if request.user.is_authenticated %}
+                  <div class="product-action">
+                    <button class="add-to-cart">Add to cart</button>
+                    <button class="remove-from-cart">Remove from cart</button>
+                  </div>
+              {% endif %}
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% empty %}
+    <h2> No items matched your search query '{{ request.GET.q }}'</h2>
+
+{% endfor %}
+<script type="text/javascript">
+  $('.next').on('click', function(e) {
+    $(".products").scrollTo("+=260px", 400);
+  });
+  $('.prev').on('click', function(e) {
+    $(".products").scrollTo("-=260px", 400);
+  });
+</script>
+
+
+{% endblock %}
