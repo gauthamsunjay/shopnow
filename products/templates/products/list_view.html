@@ -1,0 +1,7 @@
+{% for obj in object_list %}
+    {{obj.name}}<br/>
+    {{obj.price}}<br/>
+    {{obj.num_left}}<br/>
+{% empty %}
+    <p>Oops! there are no products to sell.</p>
+{% endfor %}
