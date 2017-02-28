@@ -38,5 +38,12 @@
   </div>
 
 {% endfor %}
-
+<script type="text/javascript">
+  $('.next').on('click', function(e) {
+    $(".products").scrollTo("+=260px", 400);
+  });
+  $('.prev').on('click', function(e) {
+    $(".products").scrollTo("-=260px", 400);
+  });
+</script>
 {% endblock %}
