@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+print(os.path.join(BASE_DIR, 'templates'))
+
 ROOT_URLCONF = 'shopnow.urls'
 
 TEMPLATES = [
