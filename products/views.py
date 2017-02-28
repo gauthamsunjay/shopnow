@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
   model = Product
   template_name = "products/products.html"
   products = []

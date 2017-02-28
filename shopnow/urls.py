@@ -17,12 +17,15 @@ from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib import admin
 from django.conf.urls.static import static
+from products.views import ProductListView
 from .views import home
 
 urlpatterns = [
     # url(r'/$', home, name="home"),
+    url(r'^$', ProductListView.as_view(), name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include("products.urls")),
+    url(r'^accounts/', include("accounts.urls")),
     url('^', include('django.contrib.auth.urls'))
 ]
 

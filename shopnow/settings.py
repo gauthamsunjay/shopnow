@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
-    'accounts'
+    'accounts',
+    'crispy_forms'
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -73,6 +76,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopnow.wsgi.application'
 
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases

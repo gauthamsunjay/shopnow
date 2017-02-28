@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>Register</h1>
+        <div class="form-group">
+            <form action="{% url 'registration' %}" method="POST">
+                {% csrf_token %}
+                {{registration_form|crispy}}
+                <input class='btn btn-primary' type="submit" value="Register" />
+            </form>
+        </div>
+    </div>
+{% endblock %}
