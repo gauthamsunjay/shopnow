@@ -13,11 +13,6 @@ $.ajaxSetup({
 });
 
 
-var NuShop = {
-    products: [],
-    cart    : []
-};
-
 $(document).ready(function() {
     $('.add-to-cart').on('click', function(e) {
         var $add_to_cart = $(e.target);
@@ -69,7 +64,7 @@ $(document).ready(function() {
                         total += parseInt(products[i].price);
                         var html = '<tr>' +
                             '<td class="product-image">' +
-                              '<img src="/static/images/product_1.jpg" />' +
+                              '<img src=/static/images/' + products[i].image + '/>' +
                             '</td>' +
                             '<td class="product-name">' +
                               '<span>' + products[i].name + '</span>' +
