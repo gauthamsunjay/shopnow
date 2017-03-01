@@ -50,7 +50,7 @@ class ProductListView(LoginRequiredMixin, ListView):
 
 class ProductsSearchView(ListView):
   model = Product
-  template_name = "products/search.html"
+  template_name = "products/products.html"
   queryset = Product.objects.all()
 
   def get_queryset(self):

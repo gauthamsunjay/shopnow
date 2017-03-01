@@ -64,7 +64,7 @@ $(document).ready(function() {
                         total += parseInt(products[i].price);
                         var html = '<tr>' +
                             '<td class="product-image">' +
-                              '<img src=/static/images/' + products[i].image + '/>' +
+                              '<img style="height: 200px; width: 250px;" src=/static/images/' + products[i].image + '/>' +
                             '</td>' +
                             '<td class="product-name">' +
                               '<span>' + products[i].name + '</span>' +
